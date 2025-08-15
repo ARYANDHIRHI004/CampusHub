@@ -1,6 +1,6 @@
 import Mailgen from "mailgen";
 import nodemailer from "nodemailer";
-import { environment } from "./constenst";
+import { environment } from "./constenst.js";
 
 const sendMail = async (options) => {
   const mailGenerator = new Mailgen({
