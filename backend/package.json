@@ -1,0 +1,17 @@
+{
+  "name": "campushub",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "api",
+    "backend",
+    "campusHub"
+  ],
+  "license": "ISC",
+  "author": "Aryan Dhirhi",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
