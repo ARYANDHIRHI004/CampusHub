@@ -8,7 +8,7 @@ const generateAccessAndRefreshToken = asyncHandler(async (user) => {
   const accessTokne = user.generateAccessToken();
   const refreshToken = user.generateRefreshToken();
   user.refreshToken = refreshToken;
-  await user.save();
+  await user.save({ validateBeforeSave: false });
   return { accessTokne, refreshToken };
 });
 
@@ -81,5 +81,42 @@ export const loginUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(201, "User logged In", user));
 });
 
-export const logoutUser = asyncHandler(async (req, res) => {});
-export const getcurrentUser = asyncHandler(async (req, res) => {});
+export const logoutUser = asyncHandler(async (req, res) => {
+  const userId = req.user?._id;
+
+  if (!userId) {
+    throw new ApiError(401, "You are nt loggedIn");
+  }
+
+  await User.findByIdAndUpdate(userId, {
+    $unset: ["refreshToken"],
+  });
+
+  const options = {
+    httpOnly: true,
+  };
+
+  return res
+    .status(200)
+    .clearCookie("accessToken", options)
+    .clearCookie("refreshToken", options)
+    .json(new ApiResponse(201, "Logout successfully"));
+});
+
+export const getcurrentUser = asyncHandler(async (req, res) => {
+    const userId = req.user?._id
+
+    if(!userId){
+        throw new ApiError(401, "User not loggedIn")
+    }
+
+    const user = await User.findById(userId).select("-password -refreshToken")
+
+    if(!user){
+        throw new ApiError(401, "User doest not exist")
+    }
+
+    return res.status(200).json(
+        new ApiResponse(201, "User find successfully", user)
+    )
+});
