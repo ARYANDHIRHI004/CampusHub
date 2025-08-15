@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { environment } from "../utils/constenst";
+import { environment } from "../utils/constenst.js";
 
 const connectDB = async () => {
     try {

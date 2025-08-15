@@ -1,3 +1,7 @@
+import dotenv from "dotenv"
+
+dotenv.config()
+
 export const UserRolesEnum = {
     ADMIN: "Admin",
     STUDENT: "Student",
@@ -12,4 +16,5 @@ export const environment = {
     ACCESS_TOKEN_EXPIRY: process.env.ACCESS_TOKEN_EXPIRY,
     REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET,
     REFRESH_TOKEN_EXPIRY: process.env.REFRESH_TOKEN_EXPIRY,
+    PORT: process.env.PORT,
 }

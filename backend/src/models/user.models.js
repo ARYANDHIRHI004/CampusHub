@@ -3,7 +3,7 @@ import {
   AvailableUserRoles,
   environment,
   UserRolesEnum,
-} from "../utils/constenst";
+} from "../utils/constenst.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
