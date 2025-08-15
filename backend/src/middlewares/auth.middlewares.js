@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { environment } from "../utils/constenst.js";
 import { User } from "../models/user.models.js";
 
-const verifyJWT = asyncHandler((req, _ , next) => {
+const verifyJWT = asyncHandler((req, _, next) => {
   const accessToken =
     req.cookies?.accessToke ||
     req.header("Authentication").replace("Bearer ", "");
@@ -24,7 +24,7 @@ const verifyJWT = asyncHandler((req, _ , next) => {
 });
 
 const checkPermission = (roles = []) =>
-  asyncHandler(async (req, _ , next) => {
+  asyncHandler(async (req, _, next) => {
     const user = await User.findById(req.user?._id);
     if (!user) {
       throw new ApiError(401, "User does not exist");

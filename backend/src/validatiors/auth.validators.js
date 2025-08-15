@@ -1,6 +1,6 @@
 import { body } from "express-validator";
 
-const userRegistrationValiidator = () => {
+const userRegistrationValidator = () => {
   return [
     body("fullname").isEmpty().withMessage("Fullname is required"),
 
@@ -26,4 +26,4 @@ const userRegistrationValiidator = () => {
   ];
 };
 
-export { userRegistrationValiidator };
+export { userRegistrationValidator };
